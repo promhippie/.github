@@ -8,6 +8,15 @@
         ":semanticCommits",
         ":semanticCommitType(deps)"
     ],
+    "dockerfile": {
+        "pinDigests": true
+    },
+    "gomod": {
+        "postUpdateOptions": [
+            "gomodUpdateImportPaths",
+            "gomodTidy"
+        ]
+    },
     "packageRules": [
         {
             "description": "Semantic commits for major updates",
@@ -40,6 +49,33 @@
             "automerge": true
         },
         {
+            "description": "Automerge docker digest updates",
+            "groupName": "docker digests",
+            "matchDatasources": [
+                "docker"
+            ],
+            "matchUpdateTypes": [
+                "pin",
+                "pinDigest",
+                "digest"
+            ],
+            "semanticCommitType": "chore",
+            "semanticCommitScope": "deps",
+            "pinDigests": true,
+            "automerge": true
+        },
+        {
+            "description": "Automerge untagged golang libs",
+            "groupName": "untagged libraries",
+            "matchPackageNames": [
+                "golang.org/x/crypto",
+                "golang.org/x/net"
+            ],
+            "semanticCommitType": "deps",
+            "semanticCommitScope": "patch",
+            "automerge": true
+        },
+        {
             "description": "Build tool version upgrades",
             "groupName": "build tools",
             "matchManagers": [
@@ -52,5 +88,8 @@
     ],
     "labels": [
         "renovate"
+    ],
+    "ignoreDeps": [
+        "github.com/prometheus/prometheus"
     ]
 }
