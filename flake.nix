@@ -19,7 +19,9 @@
       {
         devShell = pkgs.mkShell {
           buildInputs = with pkgs; [
+            terraform
             ruby_3_2
+            shellcheck
           ];
         };
       }
