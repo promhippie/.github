@@ -16,6 +16,8 @@ Octokit::Client.new(
       w.name.delete_suffix(".yml")
     end.reject do |workflow|
       row.name == "charts" and workflow == "testing"
+    end.reject do |workflow|
+      ["automerge"].include? workflow
     end
 
     {
