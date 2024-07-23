@@ -6,50 +6,30 @@ name: status
   schedule:
     - cron:  "30 5 * * *"
 
-permissions:
-  contents: read
-
 jobs:
   status:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Generate token
-        id: token
-        uses: tibdex/github-app-token@v2
-        with:
-          app_id: ${{ secrets.TOKEN_EXCHANGE_APP }}
-          installation_retrieval_mode: id
-          installation_retrieval_payload: ${{ secrets.TOKEN_EXCHANGE_INSTALL }}
-          private_key: ${{ secrets.TOKEN_EXCHANGE_KEY }}
-          permissions: >-
-            {"contents": "write"}
-
       - name: Checkout source
-        id: source
         uses: actions/checkout@v4
         with:
-          token: ${{ steps.token.outputs.token }}
-          fetch-depth: 0
+          token: ${{ secrets.BOT_ACCESS_TOKEN }}
 
       - name: Setup ruby
-        id: ruby
         uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
 
       - name: Write date
-        id: date
         run: date >| .github/STATUS
 
       - name: Execute script
-        id: status
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: bundle exec scripts/generate-status
 
       - name: Commit changes
-        id: commit
         uses: EndBug/add-and-commit@v9
         with:
           author_name: GitHub Actions
