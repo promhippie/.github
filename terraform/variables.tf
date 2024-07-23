@@ -1,3 +1,7 @@
+variable "organization" {
+  default = "promhippie"
+}
+
 variable "members" {
   default = [
     {

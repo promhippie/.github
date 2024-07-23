@@ -1,5 +1,5 @@
 data "github_repositories" "available" {
-  query = "org:promhippie"
+  query = "org:${var.organization} archived:false"
 }
 
 locals {
