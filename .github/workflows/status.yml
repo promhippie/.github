@@ -1,4 +1,5 @@
 ---
+# yaml-language-server: $schema=https://www.schemastore.org/github-workflow.json
 name: status
 
 "on":
@@ -28,6 +29,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: bundle exec scripts/generate-status
+
+      - name: Source rebase
+        run: git pull --autostash --rebase
 
       - name: Commit changes
         uses: EndBug/add-and-commit@v9
