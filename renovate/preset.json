@@ -19,29 +19,10 @@
     },
     "packageRules": [
         {
-            "description": "Semantic commits for major updates",
-            "groupName": "major versions",
+            "description": "Semantic commits for dep updates",
             "matchUpdateTypes": [
-                "major"
-            ],
-            "semanticCommitType": "major",
-            "semanticCommitScope": "deps",
-            "automerge": true
-        },
-        {
-            "description": "Semantic commits for minor updates",
-            "groupName": "minor versions",
-            "matchUpdateTypes": [
-                "minor"
-            ],
-            "semanticCommitType": "minor",
-            "semanticCommitScope": "deps",
-            "automerge": true
-        },
-        {
-            "description": "Semantic commits for patch updates",
-            "groupName": "patch versions",
-            "matchUpdateTypes": [
+                "major",
+                "minor",
                 "patch"
             ],
             "semanticCommitType": "patch",
@@ -50,7 +31,6 @@
         },
         {
             "description": "Automerge docker digest updates",
-            "groupName": "docker digests",
             "matchDatasources": [
                 "docker"
             ],
@@ -59,14 +39,13 @@
                 "pinDigest",
                 "digest"
             ],
-            "semanticCommitType": "chore",
+            "semanticCommitType": "patch",
             "semanticCommitScope": "deps",
             "pinDigests": true,
             "automerge": true
         },
         {
             "description": "Automerge untagged golang libs",
-            "groupName": "untagged libraries",
             "matchPackageNames": [
                 "golang.org/x/crypto",
                 "golang.org/x/net"
