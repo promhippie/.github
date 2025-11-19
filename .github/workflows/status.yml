@@ -13,7 +13,7 @@ jobs:
 
     steps:
       - name: Checkout source
-        uses: actions/checkout@v5
+        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5
         with:
           token: ${{ secrets.BOT_ACCESS_TOKEN }}
 
@@ -34,7 +34,7 @@ jobs:
         run: git pull --autostash --rebase
 
       - name: Commit changes
-        uses: EndBug/add-and-commit@v9
+        uses: EndBug/add-and-commit@a94899bca583c204427a224a7af87c02f9b325d5 # v9
         with:
           author_name: GitHub Actions
           author_email: github@webhippie.de
