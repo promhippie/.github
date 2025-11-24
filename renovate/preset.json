@@ -103,6 +103,12 @@
         "github.com/golangci/golangci-lint/v2/cmd/golangci-lint",
         "github.com/mgechev/revive"
       ]
+    },
+    {
+      "matchManagers": [
+        "kustomize"
+      ],
+      "pinDigests": false
     }
   ],
   "labels": [
