@@ -8,15 +8,25 @@ name: status
     - cron:  "30 5 * * *"
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   status:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Generate token
+        id: token
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ secrets.TOKEN_EXCHANGE_APP }}
+          private-key: ${{ secrets.TOKEN_EXCHANGE_KEY }}
+          permission-contents: write
+
       - name: Checkout source
         uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6
+        with:
+          token: ${{ steps.token.outputs.token }}
 
       - name: Setup ruby
         uses: ruby/setup-ruby@v1
