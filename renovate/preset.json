@@ -100,7 +100,7 @@
         "gomod"
       ],
       "ignoreDeps": [
-        "github.com/golangci/golangci-lint/v2/cmd/golangci-lint",
+        "github.com/golangci/golangci-lint/v2",
         "github.com/mgechev/revive"
       ]
     },
